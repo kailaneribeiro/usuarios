@@ -15,33 +15,40 @@ function menu(){
     `)
     
 let opção = prompt('Escolha uma opção: ')
-let index;
     switch(opção){
         case '1':
             listarUsuarios();
             menu();
             break;
         case '2':
-            const nome = prompt('nome: ');
-            const email = prompt('email: ');
-            const telefone = prompt('Telefone: ');
-            adicionarUsuario({ nome, telefone, email });
+            const nome = prompt('Nome: ');
+            var telefones = [];
+            var telefone;
+            while ((telefone = prompt('Telefone (ou deixe em branco para sair): '))) {
+            telefones.push(telefone);
+            }
+            const email = prompt('Email: ');
+            adicionarUsuario({ nome, telefones, email });
             console.log('Usuario adicionado com sucesso!');
             menu();
             break;
         case '3':
             listarUsuarios();
-            index = prompt('qual elemento deseja atualizar: ') - 1
-            const novoNome = prompt('Novo nome: ');
-            const novoEmail= prompt('Nova email: ');
-            const novoTelefone= prompt('Novo numero: ');
-            atualizar(index,{ nome: novoNome, email: novoEmail, telefone: novoTelefone})
+            let id = parseInt(prompt('qual elemento deseja atualizar: '))
+            var novoNome = prompt('Novo nome: ');
+            var novoTelefones= [];
+            while ((telefone = prompt('Telefone (ou deixe em branco para sair): '))) {
+                novoTelefones.push(telefone);
+            }
+            var novoEmail= prompt('Nova email: ');
+            atualizar(id,{ nome: novoNome, email: novoEmail, telefones: novoTelefones})
             console.log('Usuario atualizado com sucesso!')
             menu()
             break
         case '4':
-            index = parseInt(prompt('Número de Usuario que deseja remover: ')) - 1;
-            remover(index);
+            listarUsuarios()
+            id = parseInt(prompt('Número de Usuario que deseja remover: '))
+            remover(id);
             console.log('Usuario removido com sucesso!');
             menu();
         break;
