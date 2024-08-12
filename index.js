@@ -13,7 +13,7 @@ function menu(){
     4. excluir Usuario 
     5. sair 
     `)
-    
+let comfirma
 let opção = prompt('Escolha uma opção: ')
     switch(opção){
         case '1':
@@ -34,7 +34,7 @@ let opção = prompt('Escolha uma opção: ')
             break;
         case '3':
             listarUsuarios();
-            let id = parseInt(prompt('qual elemento deseja atualizar: '))
+            var id = parseInt(prompt('qual elemento deseja atualizar: '))
             var novoNome = prompt('Novo nome: ');
             var novoTelefones= [];
             while ((telefone = prompt('Telefone (ou deixe em branco para sair): '))) {
@@ -48,8 +48,8 @@ let opção = prompt('Escolha uma opção: ')
         case '4':
             listarUsuarios()
             id = parseInt(prompt('Número de Usuario que deseja remover: '))
-            remover(id);
-            console.log('Usuario removido com sucesso!');
+            comfirma = prompt('Para confirmar a remoção digite: "s" para sim e "n" para não: ')
+            remover(id, comfirma);
             menu();
         break;
         case '5':
